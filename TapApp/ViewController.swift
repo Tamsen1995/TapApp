@@ -49,7 +49,7 @@ class ViewController: UIViewController {
     // MARK : private methods
     
     private func addPanGesture(view: UIView) {
-        print("adding a pangesture to the subview")
+        print("adding a pan gesture to the subview")
         let pan = UIPanGestureRecognizer(target: self, action: #selector(ViewController.handlePan(sender:)))
         view.addGestureRecognizer(pan)
     }
@@ -70,6 +70,27 @@ class ViewController: UIViewController {
     
     }
     
+    private func addPinchGesture(view: UIView) {
+        print("adding a pinch gesture to the subview")
+        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(ViewController.handlePinch(sender:)))
+        view.addGestureRecognizer(pinch)
+    }
+    
+    @objc private func handlePinch(sender: UIPinchGestureRecognizer) {
+        let shapeView = sender.view!
+
+        switch sender.state {
+        case .began, .changed:
+            shapeView.transform = (shapeView.transform.scaledBy(x: sender.scale, y: sender.scale))
+            sender.scale = 1.0
+        case .ended:
+            shapeView.bounds = shapeView.frame
+            addBehaviors(view: shapeView)
+        default:
+            break
+        }
+    }
+    
     private func addBehaviors(view: UIView) {
         animator.removeAllBehaviors()
         animator.addBehavior(gravity)
@@ -81,10 +102,11 @@ class ViewController: UIViewController {
     }
     
     // Does all the necessary setup for the given shape / UIView
+    
     private func setupShapeView(view: UIView) {
-        // adding a pangesture to the subview
-        addPanGesture(view: view)
         view.isUserInteractionEnabled = true
+        addPanGesture(view: view)
+        addPinchGesture(view: view)
         addBehaviors(view: view)
     }
     
