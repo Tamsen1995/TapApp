@@ -80,12 +80,35 @@ class ViewController: UIViewController {
         }
     }
     
+    private func addRotationGesture(view: UIView) {
+        print("Adding rotation gesture to the subview")
+        let rotation = UIRotationGestureRecognizer(target: self, action:  #selector(ViewController.handleRotation(sender:)))
+        view.addGestureRecognizer(rotation)
+    }
+    
+    @objc private func handleRotation(sender: UIRotationGestureRecognizer) {
+//        if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
+//            gestureRecognizer.view?.transform = gestureRecognizer.view!.transform.rotated(by: gestureRecognizer.rotation)
+//            gestureRecognizer.rotation = 0
+        let shapeView = sender.view!
+        switch sender.state {
+        case .began, .changed:
+            shapeView.transform = shapeView.transform.rotated(by: sender.rotation)
+            sender.rotation = 0
+        case .ended:
+            break
+        default:
+            break
+        }
+    }
+    
     // Does all the necessary setup for the given shape / UIView
     
     private func setupShapeView(view: UIView) {
         view.isUserInteractionEnabled = true
         addPanGesture(view: view)
         addPinchGesture(view: view)
+        addRotationGesture(view: view)
         behaviors.addBehaviors(view: view)
     }
     
