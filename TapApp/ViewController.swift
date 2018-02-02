@@ -35,7 +35,6 @@ class ViewController: UIViewController {
         })
         self.behaviors = nil
         self.behaviors = Behaviors(view: self.tappedView)
-        print("\n\n\n")
     }
 
     private func addPanGesture(view: UIView) {

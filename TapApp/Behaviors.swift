@@ -19,7 +19,7 @@ class Behaviors {
     }
     
     lazy var animator: UIDynamicAnimator = {
-        return UIDynamicAnimator(referenceView: tappedView)
+        return UIDynamicAnimator(referenceView: self.tappedView)
     }()
     
     lazy var collider:UICollisionBehavior = {
@@ -38,11 +38,10 @@ class Behaviors {
     func addBehaviors(view: UIView) {
         animator.removeAllBehaviors()
         
-        // app crashes here!
+        ///
         animator.addBehavior(gravity)
         animator.addBehavior(collider)
         
-        // Add the subview to both behaviors
         collider.addItem(view)
         gravity.addItem(view)
     }
