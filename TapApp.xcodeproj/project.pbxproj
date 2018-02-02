@@ -15,6 +15,7 @@
 		675F1F12201FCBDA008BBE46 /* TapAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F1F11201FCBDA008BBE46 /* TapAppTests.swift */; };
 		675F1F1D201FCBDA008BBE46 /* TapAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F1F1C201FCBDA008BBE46 /* TapAppUITests.swift */; };
 		675F1F2B201FCF5A008BBE46 /* Tapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675F1F2A201FCF5A008BBE46 /* Tapped.swift */; };
+		679FD7BA2024743900D6BFA4 /* Behaviors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679FD7B92024743900D6BFA4 /* Behaviors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		675F1F1C201FCBDA008BBE46 /* TapAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapAppUITests.swift; sourceTree = "<group>"; };
 		675F1F1E201FCBDB008BBE46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		675F1F2A201FCF5A008BBE46 /* Tapped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tapped.swift; sourceTree = "<group>"; };
+		679FD7B92024743900D6BFA4 /* Behaviors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behaviors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,9 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				675F1EFB201FCBDA008BBE46 /* TapApp */,
-				675F1F10201FCBDA008BBE46 /* TapAppTests */,
-				675F1F1B201FCBDA008BBE46 /* TapAppUITests */,
-				675F1EFA201FCBDA008BBE46 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +93,7 @@
 				675F1F18201FCBDA008BBE46 /* TapAppUITests.xctest */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		675F1EFB201FCBDA008BBE46 /* TapApp */ = {
@@ -102,10 +102,11 @@
 				675F1F00201FCBDA008BBE46 /* Main.storyboard */,
 				675F1F2A201FCF5A008BBE46 /* Tapped.swift */,
 				675F1EFE201FCBDA008BBE46 /* ViewController.swift */,
+				679FD7B92024743900D6BFA4 /* Behaviors.swift */,
 				675F1EFC201FCBDA008BBE46 /* AppDelegate.swift */,
 				675F1F03201FCBDA008BBE46 /* Assets.xcassets */,
-				675F1F05201FCBDA008BBE46 /* LaunchScreen.storyboard */,
 				675F1F08201FCBDA008BBE46 /* Info.plist */,
+				679FD7B6202472CE00D6BFA4 /* Supporting Files */,
 			);
 			path = TapApp;
 			sourceTree = "<group>";
@@ -126,6 +127,17 @@
 				675F1F1E201FCBDB008BBE46 /* Info.plist */,
 			);
 			path = TapAppUITests;
+			sourceTree = "<group>";
+		};
+		679FD7B6202472CE00D6BFA4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				675F1F05201FCBDA008BBE46 /* LaunchScreen.storyboard */,
+				675F1F1B201FCBDA008BBE46 /* TapAppUITests */,
+				675F1F10201FCBDA008BBE46 /* TapAppTests */,
+				675F1EFA201FCBDA008BBE46 /* Products */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				675F1EFF201FCBDA008BBE46 /* ViewController.swift in Sources */,
+				679FD7BA2024743900D6BFA4 /* Behaviors.swift in Sources */,
 				675F1F2B201FCF5A008BBE46 /* Tapped.swift in Sources */,
 				675F1EFD201FCBDA008BBE46 /* AppDelegate.swift in Sources */,
 			);

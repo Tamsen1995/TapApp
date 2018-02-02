@@ -10,44 +10,34 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK : Properties
+    
+    @IBOutlet var tappedView: UIView!
+    var behaviors: Behaviors!
     // MARK : SETUP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.behaviors = Behaviors(view: self.tappedView)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
 
-    // MARK : Properties
-    
-    @IBOutlet var tappedView: UIView!
-
-    
-    lazy var animator: UIDynamicAnimator = {
-        return UIDynamicAnimator(referenceView: self.tappedView)
-    }()
-    
-    lazy var collider:UICollisionBehavior = {
-        let lazyCollider = UICollisionBehavior()
-        // This line, makes the boundries of our reference view a boundary
-        // for the added items to collide with.
-        lazyCollider.translatesReferenceBoundsIntoBoundary = true
-        return lazyCollider
-    }()
-    
-    lazy var gravity: UIGravityBehavior = {
-        let lazyGravity = UIGravityBehavior()
-        return lazyGravity
-    }()
-    
-    
     // MARK : private methods
     
+    @IBAction private func resetAllViews(_ sender: UIButton) {
+        self.view.subviews.forEach({
+            if $0 != sender && $0 != self.tappedView {
+                $0.removeFromSuperview()
+            }
+        })
+        self.behaviors = nil
+        self.behaviors = Behaviors(view: self.tappedView)
+        print("\n\n\n")
+    }
+
     private func addPanGesture(view: UIView) {
         print("adding a pan gesture to the subview")
         let pan = UIPanGestureRecognizer(target: self, action: #selector(ViewController.handlePan(sender:)))
@@ -63,7 +53,7 @@ class ViewController: UIViewController {
             shapeView.center = CGPoint(x: shapeView.center.x + translation.x, y: shapeView.center.y + translation.y)
             sender.setTranslation(CGPoint.zero, in: view)
         case .ended:
-            addBehaviors(view: shapeView)
+            behaviors.addBehaviors(view: shapeView)
         default:
             break
         }
@@ -85,20 +75,10 @@ class ViewController: UIViewController {
             sender.scale = 1.0
         case .ended:
             shapeView.bounds = shapeView.frame
-            addBehaviors(view: shapeView)
+            behaviors.addBehaviors(view: shapeView)
         default:
             break
         }
-    }
-    
-    private func addBehaviors(view: UIView) {
-        animator.removeAllBehaviors()
-        animator.addBehavior(gravity)
-        animator.addBehavior(collider)
-        
-        // Add the subview to both behaviors
-        collider.addItem(view)
-        gravity.addItem(view)
     }
     
     // Does all the necessary setup for the given shape / UIView
@@ -107,7 +87,7 @@ class ViewController: UIViewController {
         view.isUserInteractionEnabled = true
         addPanGesture(view: view)
         addPinchGesture(view: view)
-        addBehaviors(view: view)
+        behaviors.addBehaviors(view: view)
     }
     
     @IBAction private func tapHandler(_ sender: UITapGestureRecognizer) {
