@@ -9,3 +9,5 @@ Usage:
 1. git clone
 
 2. open project in Xcode
+
+<img width="348" alt="screen shot 2018-02-05 at 6 26 04 pm" src="https://user-images.githubusercontent.com/10574670/35819125-19ac441e-0aa2-11e8-8dad-cd0709d046a6.png">
